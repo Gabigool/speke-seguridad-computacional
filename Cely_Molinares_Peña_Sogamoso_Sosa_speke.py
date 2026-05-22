@@ -1,12 +1,10 @@
 """
-============================================================
 PROTOCOLO SPEKE - Simple Password Exponential Key Exchange
-============================================================
 Asignatura  : Electiva I - Seguridad Computacional
 Universidad : Universidad Pedagógica y Tecnológica de Colombia
 Punto       : 3.1 - Autenticaciones y Entradas al Sistema
 Autores     : Cely, Molinares, Peña, Sogamoso, Sosa
-------------------------------------------------------------
+
 DESCRIPCIÓN GENERAL:
     Este script implementa el protocolo SPEKE (Simple Password
     Exponential Key Exchange), un mecanismo de intercambio de
@@ -36,16 +34,14 @@ import secrets   # Para generar exponentes privados criptográficamente seguros
 import time      # Para medir tiempos de ejecución en milisegundos
 import datetime  # Para generar timestamps
 
-# =============================================================
+
 # PRIMO SEGURO DE 2048 BITS (RFC 3526, Grupo 14)
-# -------------------------------------------------------------
 # Este primo p satisface p = 2q + 1 donde q también es primo
 # (primo seguro / safe prime). Fue estandarizado en RFC 3526
 # para uso en intercambios Diffie-Hellman e implementaciones
 # similares. Al ser de 2048 bits, resiste ataques de factorización
 # y de logaritmo discreto con las capacidades computacionales
 # actuales.
-# =============================================================
 P_2048 = int(
     "FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD1"
     "29024E088A67CC74020BBEA63B139B22514A08798E3404DD"
@@ -417,12 +413,6 @@ def ejecutar_protocolo_speke(
 
 # BLOQUE PRINCIPAL — 5 CASOS DE PRUEBA OBLIGATORIOS
 if __name__ == "__main__":
-
-    print(" ═════════════════════════════════════════════════════════")
-    print("   PROTOCOLO SPEKE — Simple Password Exponential Key      ")
-    print("   Exchange — Implementación para Seguridad Computacional ")
-    print(" ═════════════════════════════════════════════════════════")
-
 
     # DEFINICIÓN DE LOS 5 CASOS DE PRUEBA
     # Cada caso tiene una contraseña para Alice y una para Bob,

@@ -17,8 +17,9 @@ SPEKE es un protocolo de intercambio de claves autenticadas basado en contraseñ
 ```
 punto3_autenticacion/
 │
-├── Cely_Molinares_Peña_Sogamoso_Sosa_speke.py   ← Implementación principal del protocolo
-└── README.md                      ← Este archivo
+├── Cely_Molinares_Peña_Sogamoso_Sosa_speke.py                      ← Implementación principal del protocolo
+├── Cely_Molinares_Peña_Sogamoso_Sosa_speke_vulnerabilidades.py     ← Análisis de vulnerabilidades
+└── README.md                                                        ← Este archivo
 ```
 
 ---
@@ -97,6 +98,31 @@ Alice                                   Bob
 
     Si password_Alice == password_Bob → K_sesion_Alice == K_sesion_Bob ✓
 ```
+
+---
+
+## Análisis de vulnerabilidades
+
+### Sobre el archivo `speke_vulnerabilidades.py`
+
+Este módulo analiza tres vulnerabilidades o aspectos críticos de seguridad del protocolo SPEKE:
+
+| Vulnerabilidad | Descripción | Estado en nuestra implementación |
+|---|---|---|
+| **Ataque de diccionario offline** | Un atacante que captura el tráfico (A, B) intenta verificar contraseñas candidatas sin interacción | ✓ RESISTENTE — Requiere resolver el DLP (inviable) |
+| **Reutilización del exponente privado** | Si se reutiliza 'a' en múltiples sesiones, un atacante puede correlacionar y atacar | ✓ SEGURO — Se genera exponente aleatorio por sesión |
+| **Grupo primo débil** | Un primo pequeño hace vulnerable el DLP por fuerza bruta | ✓ SEGURO — Se usa primo de 2048 bits (RFC 3526) |
+
+### Ejecutar el análisis de vulnerabilidades
+
+```bash
+python Cely_Molinares_Peña_Sogamoso_Sosa_speke_vulnerabilidades.py
+```
+
+El script demostrará:
+- Por qué SPEKE es resistente al ataque de diccionario offline
+- El impacto de la reutilización del exponente (y por qué nuestra implementación lo evita)
+- Cómo un primo débil comprometería la seguridad (comparativa con primo de 2048 bits)
 
 ---
 
